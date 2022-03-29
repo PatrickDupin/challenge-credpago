@@ -1,16 +1,30 @@
 @extends('template.layout')
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <div class="row">
-                @foreach($urls as $url)
-                <div class="col-5">{{ $url['address'] }}</div>
-                <div class="col-4">{{ $url['response'] }}</div>
-                <div class="col-1">{{ $url['status_code'] }}</div>
-                <div class="col-2">{{ $url['created_at'] }}</div>
-                @endforeach
-            </div>
-        </div>
-    </div>
+    <header class="jumbotron">
+        <h3>Lista de URL's cadastradas</h3>
+    </header>
+
+    <section>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col">URL</th>
+                <th scope="col">Status Code</th>
+                <th scope="col">Resposta</th>
+                <th scope="col">Data consulta</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($urls as $url)
+                <tr>
+                    <td>{{ $url['address'] }}</td>
+                    <td>{{ $url['status_code'] }}</td>
+                    <td>{{ $url['response'] }}</td>
+                    <td>{{ $url['created_at'] }}</td>
+                </tr>
+            </tbody>
+            @endforeach
+        </table>
+    </section>
 @endsection

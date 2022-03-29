@@ -26,6 +26,12 @@ class UrlsController extends Controller
                 'response' => 'NOT FOUND',
                 'status_code' => '404',
                 'created_at' => date('Y-m-d')
+            ],
+            [
+                'address' => 'globo.com',
+                'response' => 'OK',
+                'status_code' => '200',
+                'created_at' => date('Y-m-d')
             ]
         ];
         return view('url.index', compact('urls'));
@@ -38,7 +44,7 @@ class UrlsController extends Controller
      */
     public function create()
     {
-        //
+        return view('url/cadastrar');
     }
 
     /**
@@ -92,7 +98,7 @@ class UrlsController extends Controller
      * @param Url $url
      * @return Response
      */
-    public function destroy(Url $url)
+    public function destroy()
     {
         //
     }
