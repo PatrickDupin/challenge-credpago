@@ -6,16 +6,29 @@ use App\Models\Url;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class UrlController extends Controller
+class UrlsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return Response
      */
     public function index()
     {
-        //
+        $urls = [
+            [
+                'address' => 'urldeteste.com.br',
+                'response' => 'OK',
+                'status_code' => '200',
+                'created_at' => date('Y-m-d')
+            ],
+            [
+                'address' => 'abc.com.br',
+                'response' => 'NOT FOUND',
+                'status_code' => '404',
+                'created_at' => date('Y-m-d')
+            ]
+        ];
+        return view('url.index', compact('urls'));
     }
 
     /**
@@ -45,9 +58,9 @@ class UrlController extends Controller
      * @param Url $urlId
      * @return Response
      */
-    public function show(Url $urlId)
+    public function show($urlId)
     {
-        //
+        return view('url.index', compact('urlId'));
     }
 
     /**

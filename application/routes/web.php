@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\EntrarController;
+use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\UrlsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,21 +21,21 @@ Route::get('/', function () {
 });
 
 Route::prefix('registrar')->group(function(){
-    Route::get('','RegistroController@index');
-    Route::post('','RegistroController@registrar');
+    Route::get('', [RegistroController::class, 'index']);
+    Route::post('', [RegistroController::class, 'registrar']);
 });
 
 Route::prefix('entrar')->group(function(){
-    Route::get('','EntrarController@index');
-    Route::post('','EntrarController@entrar');
+    Route::get('', [EntrarController::class, 'index']);
+    Route::post('', [EntrarController::class, 'entrar']);
 });
 
 Route::prefix('url')->group(function () {
-    Route::get('','UrlController@index');
-    Route::get('','UrlController@create');
-    Route::post('','UrlController@store');
-    Route::get('{idUrl}','UrlController@show');
-    Route::get('{idUrl}','UrlController@edit');
-    Route::put('{idUrl}','UrlController@update');
-    Route::delete('{idUrl}','UrlController@destroy');
+    Route::get('', [UrlsController::class, 'index'])->name('url.index');
+    Route::post('', [UrlsController::class, 'store'])->name('url.store');
+    Route::get('/cadastrar', [UrlsController::class, 'create']);
+    Route::get('/{idUrl}', [UrlsController::class, 'show'])->name('url.show');
+    Route::get('/editar/{idUrl}', [UrlsController::class, 'edit']);
+    Route::put('/{idUrl}', [UrlsController::class, 'update']);
+    Route::delete('/{idUrl}', [UrlsController::class, 'destroy']);
 });
