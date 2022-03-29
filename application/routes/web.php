@@ -16,6 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/teste', function () {
-    echo 'Hello World';
+
+Route::prefix('registrar')->group(function(){
+    Route::get('','RegistroController@index');
+    Route::post('','RegistroController@registrar');
+});
+
+Route::prefix('entrar')->group(function(){
+    Route::get('','EntrarController@index');
+    Route::post('','EntrarController@entrar');
+});
+
+Route::prefix('url')->group(function () {
+    Route::get('','UrlController@index');
+    Route::get('','UrlController@create');
+    Route::post('','UrlController@store');
+    Route::get('{idUrl}','UrlController@show');
+    Route::get('{idUrl}','UrlController@edit');
+    Route::put('{idUrl}','UrlController@update');
+    Route::delete('{idUrl}','UrlController@destroy');
 });

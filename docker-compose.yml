@@ -34,10 +34,10 @@ services:
     container_name: mysql
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: laravel-api-restful
-      MYSQL_USER: laravel
-      MYSQL_ROOT_PASSWORD: 1qazxsw2
-      MYSQL_PASSWORD: 1qazxsw2
+      MYSQL_DATABASE: credpago
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:
