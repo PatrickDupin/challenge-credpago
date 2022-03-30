@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    container_name: xpto_app
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/usr/share/nginx
+    networks:
+      - app-network
+
+  db:
+    image: mysql:5.7.22
+    container_name: xpto_mysql
+    environment:
+      MYSQL_DATABASE: credpago_db
+      MYSQL_USER: credpago
+      MYSQL_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: 123456
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

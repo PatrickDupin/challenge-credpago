@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class InicioController extends Controller
+class HomeController extends Controller
 {
     public function index()
     {
