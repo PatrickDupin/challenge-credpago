@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UrlsFormRequest;
 use App\Models\Url;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -53,9 +54,41 @@ class UrlsController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(UrlsFormRequest $request)
     {
-        //
+
+        echo '<pre>';
+
+        // Create a cURL handle
+        $ch = curl_init($request->url);
+
+        // Execute
+        curl_exec($ch);
+
+        // Check if any error occurred
+        if (!curl_errno($ch)) {
+            $info = curl_getinfo($ch);
+            echo 'Took ', $info['total_time'], ' seconds to send a request to ', $info['url'], "\n";
+        }
+
+        // Close handle
+        curl_close($ch);
+
+
+
+
+
+
+
+        var_dump($info);
+        die();
+//        $url = Url::create($request->all());
+
+//        $request->session()->flash(
+//            "mensagem",
+//            "A URL <em>($url->url)</em>, foi cadastrada com sucesso!"
+//        );
+//        return redirect()->back();
     }
 
     /**

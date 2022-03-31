@@ -14,6 +14,8 @@ services:
   db:
     image: mysql:5.7.22
     container_name: xpto_mysql
+    volumes:
+      - .docker/dbdata:/var/lib/mysql
     environment:
       MYSQL_DATABASE: credpago_db
       MYSQL_USER: credpago

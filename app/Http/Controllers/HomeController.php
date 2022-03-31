@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('home.index');
+        $usuario = '';
+        if ($request->session()->has('user')) {
+            $usuario = $request->session()->get('user')->name;
+        }
+
+        return view('home.index', compact('usuario'));
     }
 }

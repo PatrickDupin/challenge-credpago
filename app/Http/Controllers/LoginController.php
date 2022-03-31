@@ -15,15 +15,20 @@ class LoginController extends Controller
     public function entrar(Request $request)
     {
         if (!Auth::attempt($request->only(['email','password']))) {
-            return redirect()->back()->withErrors('Usuário e/ou enhas incorretos!');
+            return redirect()
+                ->back()
+                ->withErrors('Usuário e/ou senhas incorretos!');
         }
 
-        return redirect()->route('/inicio');
+        $request->session()->put('user', Auth::user());
+        return redirect()->route('inicio');
     }
 
-    public function sair()
+    public function sair(Request $request)
     {
         Auth::logout();
+        $request->session()->flush();
+
         return redirect('/entrar');
     }
 }

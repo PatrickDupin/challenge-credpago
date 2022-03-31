@@ -32,13 +32,13 @@ Route::prefix('entrar')->group(function(){
 });
 Route::get('sair',[LoginController::class, 'sair']);
 
-Route::get('inicio', [HomeController::class, 'index']);
+Route::get('inicio', [HomeController::class, 'index'])->name('inicio');
 
 Route::middleware('xpto_auth')->group(function (){
     Route::prefix('url')->group(function () {
         Route::get('', [UrlsController::class, 'index'])->name('url.index');
-        Route::post('', [UrlsController::class, 'store'])->name('url.store');
         Route::get('/cadastrar', [UrlsController::class, 'create'])->name('url.create');
+        Route::post('/cadastrar', [UrlsController::class, 'store'])->name('url.store');
         Route::get('/{idUrl}', [UrlsController::class, 'show'])->name('url.show');
         Route::get('/editar/{idUrl}', [UrlsController::class, 'edit'])->name('url.edit');
         Route::put('/{idUrl}', [UrlsController::class, 'update'])->name('url.update');
