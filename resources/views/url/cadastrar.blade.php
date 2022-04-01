@@ -5,9 +5,6 @@
         <h3>Cadastrar URL</h3>
     </header>
     <section>
-        @include('template.erros', ['errors' => $errors])
-{{--        @includeWhen(!empty($mensagem), 'mensagem', ['mensagem' => $mensagem])--}}
-
         <div class="row">
             <div class="col-10 mr-auto ml-auto">
                 <form method="post">

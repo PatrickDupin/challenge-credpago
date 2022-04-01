@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Url extends Model
 {
     use HasFactory;
-    protected $fillable = [];
+    protected $guarded = [];
 }

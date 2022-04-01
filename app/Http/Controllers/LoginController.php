@@ -15,9 +15,10 @@ class LoginController extends Controller
     public function entrar(Request $request)
     {
         if (!Auth::attempt($request->only(['email','password']))) {
+            toastr()->error('Usuário e/ou senha incorretos!');
             return redirect()
-                ->back()
-                ->withErrors('Usuário e/ou senhas incorretos!');
+                ->back();
+//                ->withErrors('Usuário e/ou senhas incorretos!');
         }
 
         $request->session()->put('user', Auth::user());

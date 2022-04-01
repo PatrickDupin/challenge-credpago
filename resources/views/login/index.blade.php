@@ -7,7 +7,6 @@
         <p>Apenas usuários autenticados podem realizar consultas ou cadastros de URL's para rastreamento.</p>
     </header>
     <section>
-        @include('template.erros', ['errors' => $errors])
         <div class="row">
             <div class="col-5 mr-auto ml-auto bg-light"
                  style="border: 1px solid #999;border-radius:1rem;padding:1.5rem 3rem;">

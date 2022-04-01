@@ -15,26 +15,8 @@ class UrlsController extends Controller
      */
     public function index()
     {
-        $urls = [
-            [
-                'address' => 'urldeteste.com.br',
-                'response' => 'OK',
-                'status_code' => '200',
-                'created_at' => date('Y-m-d')
-            ],
-            [
-                'address' => 'abc.com.br',
-                'response' => 'NOT FOUND',
-                'status_code' => '404',
-                'created_at' => date('Y-m-d')
-            ],
-            [
-                'address' => 'globo.com',
-                'response' => 'OK',
-                'status_code' => '200',
-                'created_at' => date('Y-m-d')
-            ]
-        ];
+        $urls = Url::all();
+
         return view('url.index', compact('urls'));
     }
 
@@ -56,39 +38,17 @@ class UrlsController extends Controller
      */
     public function store(UrlsFormRequest $request)
     {
+//        $dados = $this->getHeaderDatas($request->url);
 
-        echo '<pre>';
+        $url = Url::create([
+            'url'         => $request->url,
+            'status_code' => '200',
+            'response'    => 'quarto teste'
+        ]);
 
-        // Create a cURL handle
-        $ch = curl_init($request->url);
+        toastr()->success("A URL <em>($url->url)</em>, foi cadastrada com sucesso!");
 
-        // Execute
-        curl_exec($ch);
-
-        // Check if any error occurred
-        if (!curl_errno($ch)) {
-            $info = curl_getinfo($ch);
-            echo 'Took ', $info['total_time'], ' seconds to send a request to ', $info['url'], "\n";
-        }
-
-        // Close handle
-        curl_close($ch);
-
-
-
-
-
-
-
-        var_dump($info);
-        die();
-//        $url = Url::create($request->all());
-
-//        $request->session()->flash(
-//            "mensagem",
-//            "A URL <em>($url->url)</em>, foi cadastrada com sucesso!"
-//        );
-//        return redirect()->back();
+        return redirect()->route('url.create');
     }
 
     /**
@@ -134,5 +94,28 @@ class UrlsController extends Controller
     public function destroy()
     {
         //
+    }
+
+    /**
+     * @param $url
+     * @return mixed
+     */
+    private function getHeaderDatas($url)
+    {
+        echo '<pre>';
+        // Create a cURL handle
+        $ch = curl_init($url);
+        // Execute
+        curl_exec($ch);
+        // Check if any error occurred
+        if (!curl_errno($ch)) {
+            $info = curl_getinfo($ch);
+        }
+        // Close handle
+        curl_close($ch);
+
+        var_dump($info);
+        die();
+//        return $info;
     }
 }

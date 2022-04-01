@@ -6,7 +6,7 @@
     </header>
 
     <section>
-        <table class="table table-striped table-hover">
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th scope="col">URL</th>
@@ -18,10 +18,10 @@
             <tbody>
             @foreach($urls as $url)
                 <tr>
-                    <td>{{ $url['address'] }}</td>
+                    <td>{{ $url['url'] }}</td>
                     <td>{{ $url['status_code'] }}</td>
                     <td>{{ $url['response'] }}</td>
-                    <td>{{ $url['created_at'] }}</td>
+                    <td>{{ date('d/m/Y - H:i:s', strtotime($url['updated_at'])) }}</td>
                 </tr>
             </tbody>
             @endforeach
