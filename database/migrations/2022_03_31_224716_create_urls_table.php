@@ -14,11 +14,18 @@ class CreateUrlsTable extends Migration
     public function up()
     {
         Schema::create('urls', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id('id');
             $table->string('url');
             $table->string('status_code');
             $table->text('response');
+            $table->integer('id_usuario')->unsigned();
             $table->timestamps();
+        });
+        Schema::table('urls', function (Blueprint $table) {
+            $table->foreign('id_usuario')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

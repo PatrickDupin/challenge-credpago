@@ -22,12 +22,12 @@ Route::get('/', function () {
 });
 
 Route::prefix('registrar')->group(function(){
-    Route::get('', [RegistroController::class, 'create']);
+    Route::get('', [RegistroController::class, 'create'])->name('registrar');
     Route::post('', [RegistroController::class, 'store']);
 });
 
 Route::prefix('entrar')->group(function(){
-    Route::get('', [LoginController::class, 'index']);
+    Route::get('', [LoginController::class, 'index'])->name('entrar');
     Route::post('', [LoginController::class, 'entrar']);
 });
 Route::get('sair',[LoginController::class, 'sair']);

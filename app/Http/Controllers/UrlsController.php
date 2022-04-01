@@ -13,9 +13,10 @@ class UrlsController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        $urls = Url::all();
+        $urls = Url::where('id_usuario', $request->session()->get('user')->id)
+            ->get();
 
         return view('url.index', compact('urls'));
     }
@@ -43,11 +44,11 @@ class UrlsController extends Controller
         $url = Url::create([
             'url'         => $request->url,
             'status_code' => '200',
-            'response'    => 'quarto teste'
+            'response'    => 'teste',
+            'id_usuario'  => $request->session()->get('user')->id
         ]);
 
         toastr()->success("A URL <em>($url->url)</em>, foi cadastrada com sucesso!");
-
         return redirect()->route('url.create');
     }
 

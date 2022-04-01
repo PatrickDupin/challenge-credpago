@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegistroController extends Controller
@@ -18,10 +17,9 @@ class RegistroController extends Controller
     {
         $data = $request->except('_token');
         $data['password'] = Hash::make($data['password']);
-        $user = User::create($data);
+        User::create($data);
 
-        Auth::login($user);
-
-        return redirect()->route('url.index');
+        toastr()->success('Usuário cadastrado com sucesso!');
+        return redirect()->route('entrar');
     }
 }
