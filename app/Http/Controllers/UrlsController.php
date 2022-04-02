@@ -88,7 +88,7 @@ class UrlsController extends Controller
         $info = curl_getinfo($curl);
         $body_response = curl_exec($curl);
         curl_close($curl);
-dd($info);
+
         return $info + ['body' => $body_response];;
     }
 }
