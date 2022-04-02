@@ -85,14 +85,10 @@ class UrlsController extends Controller
             CURLOPT_FOLLOWLOCATION => true
         ]);
 
+        $info = curl_getinfo($curl);
         $body_response = curl_exec($curl);
-
-        if (!curl_errno($curl)) {
-            $info = curl_getinfo($curl);
-        }
-
         curl_close($curl);
-
+dd($info);
         return $info + ['body' => $body_response];;
     }
 }
