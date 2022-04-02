@@ -17,7 +17,7 @@ class CreateUrlsTable extends Migration
             $table->id('id');
             $table->string('url');
             $table->string('status_code');
-            $table->text('response');
+            $table->binary('response');
             $table->integer('id_usuario')->unsigned();
             $table->timestamps();
         });

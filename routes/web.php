@@ -39,9 +39,7 @@ Route::middleware('xpto_auth')->group(function (){
         Route::get('', [UrlsController::class, 'index'])->name('url.index');
         Route::get('/cadastrar', [UrlsController::class, 'create'])->name('url.create');
         Route::post('/cadastrar', [UrlsController::class, 'store'])->name('url.store');
-        Route::get('/{idUrl}', [UrlsController::class, 'show'])->name('url.show');
-        Route::get('/editar/{idUrl}', [UrlsController::class, 'edit'])->name('url.edit');
-        Route::put('/{idUrl}', [UrlsController::class, 'update'])->name('url.update');
+        Route::post('/{idUrl}', [UrlsController::class, 'update']);
         Route::delete('/{idUrl}', [UrlsController::class, 'destroy'])->name('url.destroy');
     });
 });
