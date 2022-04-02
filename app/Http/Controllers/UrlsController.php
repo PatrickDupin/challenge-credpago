@@ -31,7 +31,6 @@ class UrlsController extends Controller
     {
         try {
             $dados = $this->getRequestDatas($request->url);
-
             $url = Url::create([
                 'url'         => $request->url,
                 'status_code' => $dados['http_code'],
@@ -89,6 +88,6 @@ class UrlsController extends Controller
         $body_response = curl_exec($curl);
         curl_close($curl);
 
-        return $info + ['body' => $body_response];;
+        return $info + ['body' => $body_response];
     }
 }
