@@ -1,4 +1,4 @@
-## Contextualização:
+## 5.1. Contextualização:
 A Empresa XPTO faz o rastreamento de status de websites.
 
 Seus clientes podem acessar a esta aplicação web para cadastrar as URLs que desejam rastrear.
@@ -11,4 +11,4 @@ O robô irá armazenar o código de status HTTP e o corpo da resposta, de forma 
 
 Deve ser exibida a tela inicial do projeto Laravel.
 
-[< Inicio](../../README.md)
+[< Início](../../README.md)

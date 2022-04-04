@@ -1,4 +1,4 @@
-## Como instalar o projeto
+## 6. Como instalar o projeto
 
 * Clonar o projeto, com o comando `https://github.com/PatrickDupin/challenge-credpago.git`;
 * Criar uma cópia do arquivo `.env.example` com o nome de `.env` e alterar as variáveis de ambiente abaixo para realisar a conexão do banco de dados;
@@ -15,4 +15,4 @@
 
 A página inicial do projeto Laravel. Para acessar a aplicação desenvolvida, acesse `localhost:8000/inicio`
 
-[< Inicio](../../README.md)
+[< Início](../../README.md)
