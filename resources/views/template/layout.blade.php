@@ -51,9 +51,14 @@
                     </a>
                 @endauth
                 @guest
-                    <a href="/entrar" class="nav-link btn btn-sm btn-outline-success">
-                        <i class="fa-solid fa-key">&nbsp;</i>Entrar
-                    </a>
+                    <div class="row">
+                        <a href="/entrar" class="nav-link btn btn-sm btn-outline-success mr-2">
+                            <i class="fa-solid fa-key">&nbsp;</i>Entrar
+                        </a>
+                        <a href="/registrar" class="nav-link btn btn-sm btn-outline-secondary mr-3">
+                            <i class="fa-solid fa-user-plus">&nbsp;</i>Registrar
+                        </a>
+                    </div>
                 @endguest
             </li>
         </ul>
