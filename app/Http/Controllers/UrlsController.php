@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UrlsFormRequest;
 use App\Models\Url;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UrlsController extends Controller
@@ -38,8 +39,8 @@ class UrlsController extends Controller
                 'id_usuario'  => $request->session()->get('user')->id
             ]);
 
-            toastr()->success("A URL <em>($url->url)</em>, foi cadastrada com sucesso!");
-            return redirect()->route('url.create');
+            toastr()->success("URL cadastrada com sucesso!");
+            return redirect()->route('url.index');
         } catch (\Error $error) {
             toastr()->success('Erro ao tentar incluir a URL.');
             return redirect()->route('inicio');
@@ -49,10 +50,15 @@ class UrlsController extends Controller
     public function update($urlId)
     {
         try {
-            $url = Url::find($urlId)->first();
+            $url = Url::where('id',$urlId)->first();
+            $dados = $this->getRequestDatas($url->url);
+
             $url->update([
-                'created_at' => date('Y-m-d H:i:s')
+                'status_code' => $dados['http_code'],
+                'response'    => $dados['body'],
+                'created_at' => Carbon::now()
             ]);
+
             toastr()->success('URL atualizada com sucesso!');
             return redirect()->route('url.index');
         } catch (\Error $error) {
@@ -61,10 +67,10 @@ class UrlsController extends Controller
         }
     }
 
-    public function destroy(Request $request)
+    public function destroy($idUrl)
     {
         try {
-            Url::destroy($request->id);
+            Url::destroy($idUrl);
             toastr()->success('URL excluída com sucesso!');
             return redirect()->route('url.index');
         } catch (\Error $error) {

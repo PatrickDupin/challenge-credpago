@@ -22,12 +22,18 @@
                     <td>{{ $url['status_code'] }}</td>
                     <td>{{ date('d/m/Y - H:i:s', strtotime($url['updated_at'])) }}</td>
                     <td class="d-flex justify-content-around">
-                        <button id="{{ $url['id'] }}" class="btn btn-sm btn-primary btn-view" title="Visualizar o corpo da resposta"
+                        <button id="{{ $url['id'] }}" class="btn btn-sm btn-primary btn-view"
+                                title="Visualizar o corpo da resposta"
                                 data-toggle="modal" data-target="#modalBodyResponse"
                                 data-response="{{ base64_encode($url['response']) }}"
                                 onclick="exibirModalBodyResponse({{ $url['id'] }})">
                             <i class="fa-solid fa-eye"></i></button>
-                    @auth
+                        @auth
+                            <form method="post"
+                                  action="/url/{{ $url['id'] }}">
+                                @csrf
+                                <button class="btn btn-warning btn-sm"><i class="fa-solid fa-refresh"></i></button>
+                            </form>
                             <form method="post"
                                   action="/url/{{ $url['id'] }}"
                                   onSubmit="return confirm('Tem certeza que deseja remover a URL {{ $url['url'] }}?')">
@@ -45,7 +51,8 @@
             <span class="d-flex justify-content-around">Nenhum registro encontrado</span>
         @endif
 
-        <div class="modal fade" id="modalBodyResponse" tabindex="-1" aria-labelledby="modalBodyResponseLabel" aria-hidden="true">>
+        <div class="modal fade" id="modalBodyResponse" tabindex="-1" aria-labelledby="modalBodyResponseLabel"
+             aria-hidden="true">>
             <div class="modal-dialog modal-xl modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -65,7 +72,7 @@
         </div>
     </section>
     <script type="text/javascript">
-        function exibirModalBodyResponse (id) {
+        function exibirModalBodyResponse(id) {
             let body_response = $("#" + id).data('response');
             document.getElementById('body-response').innerHTML = atob(body_response);
         }
